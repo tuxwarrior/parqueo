@@ -95,18 +95,21 @@ public class Login extends javax.swing.JFrame {
         Connection conn = null;
         Statement st = null;
         String consulta = null;
-        String nombre = txtUsuario.getText().toString();
+        String nombre = txtUsuario.getText();
+        String pass = pswContrasena.getText();
         
-        consulta="SELECT usuario,contrasena FROM usuarios WHERE usuario='"+ nombre +"'";
+        consulta="SELECT usuario,contrasena FROM usuarios WHERE usuario='"+nombre+"' AND contrasena ='"+pass+"'";
         
         try{
-            Class.forName("com.mysql.jdbc.driver");
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
             conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/parqueo","parqueo","r3p34r");
             st = (Statement) conn.createStatement();
             ResultSet resul = st.executeQuery(consulta);
             
             if(resul.next()){
                 lblWarning.setText(resul.getString("contrasena"));
+            }else{
+                lblWarning.setText("Usuario o contraseña incorrecto");
             }
             
             
