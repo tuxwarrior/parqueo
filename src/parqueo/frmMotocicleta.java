@@ -9,12 +9,12 @@ package parqueo;
  *
  * @author ulises
  */
-public class CAMIONES extends javax.swing.JInternalFrame {
+public class frmMotocicleta extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form CAMIONES
+     * Creates new form frmMotocicleta
      */
-    public CAMIONES() {
+    public frmMotocicleta() {
         initComponents();
     }
 
@@ -32,7 +32,7 @@ public class CAMIONES extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setResizable(true);
-        setTitle("Camiones");
+        setTitle("Motocicletas");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -54,13 +54,14 @@ public class CAMIONES extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 24, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
