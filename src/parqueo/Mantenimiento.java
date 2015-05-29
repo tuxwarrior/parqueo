@@ -226,7 +226,7 @@ public class Mantenimiento extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Integer posicion;
-        String tipo;
+        String tipo=null;
         
         if(rdbAuto.isSelected()){
             tipo = "Automovil";
@@ -238,6 +238,11 @@ public class Mantenimiento extends javax.swing.JInternalFrame {
             tipo = "Motocicleta";
         }
         
+        posicion = Integer.parseInt(txtPos.getText());
+        
+        lblAdverIn.setText(tipo);
+        lblLleno.setText(posicion.toString());
+       
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
