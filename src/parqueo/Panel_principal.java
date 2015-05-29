@@ -14,8 +14,11 @@ import javax.swing.JOptionPane;
  * @author ulises
  */
 public class Panel_principal extends javax.swing.JFrame {
-
-    /**
+    public static boolean TstVentNvoAu = false;
+    public static boolean TstVentNvoCa = false;
+    public static boolean TstVentNvoMo = false;
+    public static boolean TstVentNvoMan = false;
+     /**
      * Creates new form Panel_principal
      */
     public Panel_principal() {
@@ -117,27 +120,41 @@ public class Panel_principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-          autoMoviles carro = new autoMoviles();
+          if(TstVentNvoAu==false){
+            autoMoviles carro = new autoMoviles();
           jDesktopPane1.add(carro);
           carro.show();
+          TstVentNvoAu=true;
+          }
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        CAMIONES camion = new CAMIONES();
-        jDesktopPane1.add(camion);
-        camion.show();
+        if(TstVentNvoCa==false){
+            CAMIONES camion = new CAMIONES();
+            jDesktopPane1.add(camion);
+            camion.show();
+            TstVentNvoCa=true;
+        }
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        frmMotocicleta moto = new frmMotocicleta();
-        jDesktopPane1.add(moto);
-        moto.show();
+        if(TstVentNvoMo==false){    
+            frmMotocicleta moto = new frmMotocicleta();
+            jDesktopPane1.add(moto);
+            moto.show();
+            TstVentNvoMo=true;
+        }
+            
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        Mantenimiento cambio = new Mantenimiento();
-        jDesktopPane1.add(cambio);
-        cambio.show();
+        if(TstVentNvoMan==false){    
+            Mantenimiento cambio = new Mantenimiento();
+            jDesktopPane1.add(cambio);
+            cambio.show();
+            TstVentNvoMan=true;
+            
+        }
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     /**
