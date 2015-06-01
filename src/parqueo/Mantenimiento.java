@@ -5,6 +5,8 @@
  */
 package parqueo;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ulises
@@ -240,7 +242,7 @@ public class Mantenimiento extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Integer posicion;
+        Integer posicion=-1;
         String tipo=null;
         
         if(rdbAuto.isSelected()){
@@ -253,32 +255,43 @@ public class Mantenimiento extends javax.swing.JInternalFrame {
             tipo = "Motocicleta";
         }
         
-        int lleno;
+        boolean lleno;
         lleno=baseDatos.espaciosOcupados(tipo);
-        if(lleno>4){
+        if(lleno!=true){            
+            try{
+                posicion = Integer.parseInt(txtPos.getText());
+            }catch(Exception c){
+                JOptionPane.showMessageDialog(null, c);
+            }
+            if(posicion <= 5){
+                boolean ocupado;
+                ocupado=baseDatos.chequearPosicion(tipo, posicion);
+                if(ocupado==true){
+                    lblLleno.setText("Este espacio esta ocupado, intente con otro");
+                }else{
+                    try{
+                        if(posicion!=-1){
+                        baseDatos.ingresarAutos(tipo,posicion);    
+                        //baseDatos.agregarRegistro(tipo, posicion);
+                        }else{JOptionPane.showMessageDialog(null,"No se pudo agregar");}
+                    }catch(Exception e){
+                        
+                    }
+                    
+                }
+                
+                
+            }else{
+                lblLleno.setText("Debe escribir un número del 1 al 5");
+            }
+        }else{
             lblLleno.setText("Parqueo lleno");
         }
         
-        posicion = Integer.parseInt(txtPos.getText());
-        if(posicion <= 5){
-            
-        }else{
-            boolean ocupado;
-            ocupado=baseDatos.chequearPosicion(tipo, posicion);
-            if(ocupado==true){
-                lblLleno.setText("Este espacio esta ocupado, intente con otro");
-            }
-        }
         
         
         
         
-        try{
-        baseDatos agregar = new baseDatos();
-        agregar.ingresarAutos(tipo,posicion);
-        agregar.agregarRegistro(tipo, posicion);
-        }catch(Exception e){
-        }
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -287,7 +300,7 @@ public class Mantenimiento extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_formInternalFrameClosed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Integer posicion;
+        Integer posicion=-1;
         String tipo=null;
         
         
@@ -300,12 +313,17 @@ public class Mantenimiento extends javax.swing.JInternalFrame {
         if(rdbDmoto.isSelected()){
             tipo = "Motocicleta";
         }
-        
-        posicion = Integer.parseInt(txtPos2.getText());
-        
+        try{
+            posicion = Integer.parseInt(txtPos2.getText());
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+        if(posicion!=-1){
         baseDatos destruir = new baseDatos();
         baseDatos.eliminarVehiculos(tipo,posicion);
-        
+        }else{
+            JOptionPane.showMessageDialog(null, "No se pudo Eliminar");
+        }
         
     }//GEN-LAST:event_jButton2ActionPerformed
 

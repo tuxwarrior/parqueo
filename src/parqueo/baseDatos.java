@@ -41,9 +41,9 @@ public class baseDatos {
         
         
         //tiempo
-        String Tiempo = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
+       // String Tiempo = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
         
-        String consultaPos="SELECT idVehiculo FROM vehiculos WHERE posicion="+posicion+" AND estado=1";
+        //String consultaPos="SELECT idVehiculo FROM vehiculos WHERE posicion="+posicion+" AND estado=1";
         
         
         try{
@@ -51,7 +51,7 @@ public class baseDatos {
             conn = (Connection) DriverManager.getConnection(sqlurl+databas,dbuser,dbpass);
             st = (Statement) conn.createStatement();
             st.executeUpdate(consultasqlIn);
-            
+            JOptionPane.showMessageDialog(null,"Agregado");
            
         }catch(Exception e){
              
@@ -69,6 +69,7 @@ public class baseDatos {
             conn = (Connection) DriverManager.getConnection(sqlurl+databas,dbuser,dbpass);
             st = (Statement) conn.createStatement();
             st.executeUpdate(eliminarv);
+            JOptionPane.showMessageDialog(null, "Eliminado");
             
            
         }catch(Exception e){
@@ -76,12 +77,12 @@ public class baseDatos {
         }
         
     }
-    
+    /*
     public static void agregarRegistro(String tipo, int posicion)throws SQLException {
         
     
     
-    }
+    }*/
     
     
     public static ResultSet llenarTabla(String tipo) throws SQLException{
@@ -106,7 +107,7 @@ public class baseDatos {
     }
     
     
-    public static int conseguirID(String buscarId){
+    /*public static int conseguirID(String buscarId){
            int idVehiculo=-1;
            ResultSet idrs;
            Statement st;
@@ -122,53 +123,58 @@ public class baseDatos {
                }
                
             }catch(Exception e){
-                
+                JOptionPane.showMessageDialog(null, e);
             }
             
             return idVehiculo;
-    }
+    }*/
     
     
-    public static int espaciosOcupados(String tipo){
-           int lleno=0; 
-           ResultSet idrs;
+    public static boolean espaciosOcupados(String tipo){
+           int lleno=0;
+           boolean blleno=false;
+           ResultSet resules;
            Statement st;
-           String buscarLleno="SELECT count(idVehiculo) as ocupados FROM vehiculos WHERE estado=1 AND tipo="+tipo+""; 
+           String buscarLleno="SELECT count(idVehiculo) as ocupados FROM vehiculos WHERE estado=1 AND tipo='"+tipo+"'"; 
            
            try{
                Class.forName(driver).newInstance();
                conn = (Connection) DriverManager.getConnection(sqlurl+databas,dbuser,dbpass);
                st = (Statement) conn.createStatement();
-               idrs = st.executeQuery(buscarLleno);
+               resules = st.executeQuery(buscarLleno);
                
-               if(idrs.next()){
-                   lleno=idrs.getInt("ocupados");
+               if(resules.next()){
+                   lleno=resules.getInt("ocupados");
+                   
+                   if(lleno>4){
+                       blleno=true;
+                   }
                }
                
             }catch(Exception e){
-                
+                JOptionPane.showMessageDialog(null, e);
             }
             
-            return lleno;
+            return blleno;
     }
     
     public static boolean chequearPosicion(String tipo, int posicion){
         boolean ocupado=false;
-        ResultSet idrs;
+        ResultSet resulpos;
            Statement st;
-           String buscarLleno="SELECT idVehiculo  FROM vehiculos WHERE estado=1 AND tipo="+tipo+" AND posicion="+posicion+"";
+           String buscarLleno="SELECT idVehiculo  FROM vehiculos WHERE estado=1 AND tipo='"+tipo+"' AND posicion="+posicion+"";
            try{
                Class.forName(driver).newInstance();
                conn = (Connection) DriverManager.getConnection(sqlurl+databas,dbuser,dbpass);
                st = (Statement) conn.createStatement();
-               idrs = st.executeQuery(buscarLleno);
+               resulpos = st.executeQuery(buscarLleno);
                
-               if(idrs.next()){
+               if(resulpos.next()){
                   ocupado=true;
                }
                
             }catch(Exception e){
-                
+                JOptionPane.showMessageDialog(null, e);
             }
            return ocupado;
             
