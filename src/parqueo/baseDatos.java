@@ -9,6 +9,7 @@ import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
@@ -27,13 +28,11 @@ public class baseDatos {
     
     
     
-    public static void ingresarAutos(String tipo, int posicion){
+    public static void ingresarAutos(String tipo, int posicion)throws SQLException {
         /*
         Este metodo ingresa el carro al parqueo, y tambien inicia el registro
         
         */
-        // Para capturar el id del vehiculo de la db
-        int idVehiculo;
         
         Statement st;
         
@@ -52,27 +51,40 @@ public class baseDatos {
             conn = (Connection) DriverManager.getConnection(sqlurl+databas,dbuser,dbpass);
             st = (Statement) conn.createStatement();
             st.executeUpdate(consultasqlIn);
-            st.close();
-            conn.close();
             
            
         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
+             
+        }
+    }
+    
+    
+    public static void eliminarVehiculos(String tipo, int posicion){
+        Statement st;
+       
+        String eliminarv="UPDATE vehiculos set estado=0 WHERE tipo='"+tipo+"' AND posicion="+posicion+" AND estado=1";
+        //JOptionPane.showMessageDialog(null, eliminarv);
+        try{
+            Class.forName(driver).newInstance();
+            conn = (Connection) DriverManager.getConnection(sqlurl+databas,dbuser,dbpass);
+            st = (Statement) conn.createStatement();
+            st.executeUpdate(eliminarv);
+            
+           
+        }catch(Exception e){
+             JOptionPane.showMessageDialog(null, e);
         }
         
-        
-        
-        
     }
     
-    public static void agregarRegistro(String tipo, int posicion){
+    public static void agregarRegistro(String tipo, int posicion)throws SQLException {
         
     
     
     }
     
     
-    public static ResultSet llenarTabla(String tipo){
+    public static ResultSet llenarTabla(String tipo) throws SQLException{
         String querya="SELECT idVehiculo,tipo,posicion FROM vehiculos WHERE tipo='"+tipo+"' AND estado=1";
         Statement st;
         ResultSet result=null;
@@ -82,17 +94,84 @@ public class baseDatos {
             conn = (Connection) DriverManager.getConnection(sqlurl+databas,dbuser,dbpass);
             st = (Statement) conn.createStatement();
             result = st.executeQuery(querya);
-            st.close();
-            conn.close();
+            
+            
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
         }
         
         return result;
         
+        
     }
     
     
+    public static int conseguirID(String buscarId){
+           int idVehiculo=-1;
+           ResultSet idrs;
+           Statement st;
+            
+           try{
+               Class.forName(driver).newInstance();
+               conn = (Connection) DriverManager.getConnection(sqlurl+databas,dbuser,dbpass);
+               st = (Statement) conn.createStatement();
+               idrs = st.executeQuery(buscarId);
+               
+               if(idrs.next()){
+                   idVehiculo=idrs.getInt("idVehiculo");
+               }
+               
+            }catch(Exception e){
+                
+            }
+            
+            return idVehiculo;
+    }
     
+    
+    public static int espaciosOcupados(String tipo){
+           int lleno=0; 
+           ResultSet idrs;
+           Statement st;
+           String buscarLleno="SELECT count(idVehiculo) as ocupados FROM vehiculos WHERE estado=1 AND tipo="+tipo+""; 
+           
+           try{
+               Class.forName(driver).newInstance();
+               conn = (Connection) DriverManager.getConnection(sqlurl+databas,dbuser,dbpass);
+               st = (Statement) conn.createStatement();
+               idrs = st.executeQuery(buscarLleno);
+               
+               if(idrs.next()){
+                   lleno=idrs.getInt("ocupados");
+               }
+               
+            }catch(Exception e){
+                
+            }
+            
+            return lleno;
+    }
+    
+    public static boolean chequearPosicion(String tipo, int posicion){
+        boolean ocupado=false;
+        ResultSet idrs;
+           Statement st;
+           String buscarLleno="SELECT idVehiculo  FROM vehiculos WHERE estado=1 AND tipo="+tipo+" AND posicion="+posicion+"";
+           try{
+               Class.forName(driver).newInstance();
+               conn = (Connection) DriverManager.getConnection(sqlurl+databas,dbuser,dbpass);
+               st = (Statement) conn.createStatement();
+               idrs = st.executeQuery(buscarLleno);
+               
+               if(idrs.next()){
+                  ocupado=true;
+               }
+               
+            }catch(Exception e){
+                
+            }
+           return ocupado;
+            
+    }
     
 }

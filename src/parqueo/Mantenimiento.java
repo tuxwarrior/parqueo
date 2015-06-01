@@ -16,6 +16,7 @@ public class Mantenimiento extends javax.swing.JInternalFrame {
      */
     public Mantenimiento() {
         initComponents();
+     
     }
 
     /**
@@ -34,7 +35,6 @@ public class Mantenimiento extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         txtPos = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        lblAdverIn = new javax.swing.JLabel();
         lblLleno = new javax.swing.JLabel();
         rdbAuto = new javax.swing.JRadioButton();
         rdbCamion = new javax.swing.JRadioButton();
@@ -45,9 +45,9 @@ public class Mantenimiento extends javax.swing.JInternalFrame {
         txtPos2 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         lblAdverOut = new javax.swing.JLabel();
-        autos = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
+        rdbDautos = new javax.swing.JRadioButton();
+        rdbDcamion = new javax.swing.JRadioButton();
+        rdbDmoto = new javax.swing.JRadioButton();
 
         setClosable(true);
         setResizable(true);
@@ -107,16 +107,14 @@ public class Mantenimiento extends javax.swing.JInternalFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(41, 41, 41)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jButton1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lblAdverIn, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jButton1)
                                     .addComponent(rdbAuto)
                                     .addComponent(rdbCamion)
                                     .addComponent(rdbMoto)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(38, 38, 38)
-                                .addComponent(txtPos, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(txtPos, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(303, 303, 303))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(71, 71, 71)
                         .addComponent(lblLleno, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -138,14 +136,9 @@ public class Mantenimiento extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3)
                     .addComponent(txtPos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(lblAdverIn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1)
-                        .addGap(0, 21, Short.MAX_VALUE))))
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addGap(0, 21, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Retirar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(153, 0, 0)));
@@ -155,15 +148,20 @@ public class Mantenimiento extends javax.swing.JInternalFrame {
         jLabel4.setText("Posición:");
 
         jButton2.setText("Retirar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
-        bgrpSeccion.add(autos);
-        autos.setText("Automóviles");
+        bgrpSeccion.add(rdbDautos);
+        rdbDautos.setText("Automóviles");
 
-        bgrpSeccion.add(jRadioButton2);
-        jRadioButton2.setText("Camiones");
+        bgrpSeccion.add(rdbDcamion);
+        rdbDcamion.setText("Camiones");
 
-        bgrpSeccion.add(jRadioButton3);
-        jRadioButton3.setText("Motocicletas");
+        bgrpSeccion.add(rdbDmoto);
+        rdbDmoto.setText("Motocicletas");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -172,47 +170,47 @@ public class Mantenimiento extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblAdverOut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel4))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(txtPos2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jButton2)
-                                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(txtPos2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(23, 23, 23)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jRadioButton2)
-                                    .addComponent(autos)
-                                    .addComponent(jRadioButton3))
-                                .addGap(0, 0, Short.MAX_VALUE))))))
+                                .addComponent(jButton2)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rdbDcamion)
+                            .addComponent(rdbDautos)
+                            .addComponent(rdbDmoto))
+                        .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblAdverOut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addComponent(lblAdverOut, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(autos))
+                    .addComponent(rdbDautos))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jRadioButton2)
+                .addComponent(rdbDcamion)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton3)
+                .addComponent(rdbDmoto)
                 .addGap(22, 22, 22)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtPos2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(1, 1, 1)
-                .addComponent(lblAdverOut, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addContainerGap())
         );
@@ -255,12 +253,32 @@ public class Mantenimiento extends javax.swing.JInternalFrame {
             tipo = "Motocicleta";
         }
         
-        posicion = Integer.parseInt(txtPos.getText());
+        int lleno;
+        lleno=baseDatos.espaciosOcupados(tipo);
+        if(lleno>4){
+            lblLleno.setText("Parqueo lleno");
+        }
         
+        posicion = Integer.parseInt(txtPos.getText());
+        if(posicion <= 5){
+            
+        }else{
+            boolean ocupado;
+            ocupado=baseDatos.chequearPosicion(tipo, posicion);
+            if(ocupado==true){
+                lblLleno.setText("Este espacio esta ocupado, intente con otro");
+            }
+        }
+        
+        
+        
+        
+        try{
         baseDatos agregar = new baseDatos();
         agregar.ingresarAutos(tipo,posicion);
         agregar.agregarRegistro(tipo, posicion);
-     
+        }catch(Exception e){
+        }
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -268,9 +286,31 @@ public class Mantenimiento extends javax.swing.JInternalFrame {
         Panel_principal.TstVentNvoMan=false;
     }//GEN-LAST:event_formInternalFrameClosed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Integer posicion;
+        String tipo=null;
+        
+        
+        if(rdbDautos.isSelected()){
+            tipo = "Automovil";
+        }
+        if(rdbDcamion.isSelected()){
+            tipo = "Camion";
+        }
+        if(rdbDmoto.isSelected()){
+            tipo = "Motocicleta";
+        }
+        
+        posicion = Integer.parseInt(txtPos2.getText());
+        
+        baseDatos destruir = new baseDatos();
+        baseDatos.eliminarVehiculos(tipo,posicion);
+        
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JRadioButton autos;
     private javax.swing.ButtonGroup bgrpSeccion;
     private javax.swing.ButtonGroup bgrpTipoA;
     private javax.swing.JButton jButton1;
@@ -281,13 +321,13 @@ public class Mantenimiento extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JLabel lblAdverIn;
     private javax.swing.JLabel lblAdverOut;
     private javax.swing.JLabel lblLleno;
     private javax.swing.JRadioButton rdbAuto;
     private javax.swing.JRadioButton rdbCamion;
+    private javax.swing.JRadioButton rdbDautos;
+    private javax.swing.JRadioButton rdbDcamion;
+    private javax.swing.JRadioButton rdbDmoto;
     private javax.swing.JRadioButton rdbMoto;
     private javax.swing.JTextField txtPos;
     private javax.swing.JTextField txtPos2;

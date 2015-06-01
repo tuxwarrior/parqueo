@@ -5,6 +5,10 @@
  */
 package parqueo;
 
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author ulises
@@ -16,6 +20,30 @@ public class frmMotocicleta extends javax.swing.JInternalFrame {
      */
     public frmMotocicleta() {
         initComponents();
+        ResultSet resultado=null;
+        try{
+        baseDatos datab = new baseDatos();
+        resultado=datab.llenarTabla("Motocicleta");
+        String[] TableColumnsName = {"id","Tipo","Posición"};
+        
+        DefaultTableModel aModel = (DefaultTableModel) jTable1.getModel();
+        aModel.setColumnIdentifiers(TableColumnsName);
+        
+        ResultSetMetaData rsmd = resultado.getMetaData();
+        int colNo = rsmd.getColumnCount();
+        
+        while(resultado.next()){
+            Object[] objeto = new Object[colNo];
+            for(int i=0;i<colNo;i++){
+                objeto[i]=resultado.getObject(i+1);
+                
+            }
+            aModel.addRow(objeto);
+        }
+        jTable1.setModel(aModel);
+        }catch(Exception e){
+        
+        }
     }
 
     /**
@@ -53,10 +81,7 @@ public class frmMotocicleta extends javax.swing.JInternalFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"

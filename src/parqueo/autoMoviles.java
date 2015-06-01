@@ -21,14 +21,14 @@ public class autoMoviles extends javax.swing.JInternalFrame {
     public autoMoviles() {
         initComponents();
         ResultSet resultado=null;
-        
+        try{
         baseDatos datab = new baseDatos();
         resultado=datab.llenarTabla("Automovil");
         String[] TableColumnsName = {"id","Tipo","Posición"};
         
         DefaultTableModel aModel = (DefaultTableModel) jTable1.getModel();
         aModel.setColumnIdentifiers(TableColumnsName);
-        try{
+        
         ResultSetMetaData rsmd = resultado.getMetaData();
         int colNo = rsmd.getColumnCount();
         
@@ -36,6 +36,7 @@ public class autoMoviles extends javax.swing.JInternalFrame {
             Object[] objeto = new Object[colNo];
             for(int i=0;i<colNo;i++){
                 objeto[i]=resultado.getObject(i+1);
+                
             }
             aModel.addRow(objeto);
         }
@@ -57,6 +58,7 @@ public class autoMoviles extends javax.swing.JInternalFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        lblAdvertenciaA = new javax.swing.JLabel();
 
         setClosable(true);
         setResizable(true);
@@ -81,13 +83,10 @@ public class autoMoviles extends javax.swing.JInternalFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "null", "Title 2", "Title 3"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -100,13 +99,19 @@ public class autoMoviles extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 439, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(90, 90, 90)
+                .addComponent(lblAdvertenciaA, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(119, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(lblAdvertenciaA, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(69, Short.MAX_VALUE))
         );
 
         pack();
@@ -120,5 +125,6 @@ public class autoMoviles extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblAdvertenciaA;
     // End of variables declaration//GEN-END:variables
 }
