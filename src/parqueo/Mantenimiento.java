@@ -257,8 +257,8 @@ public class Mantenimiento extends javax.swing.JInternalFrame {
         
         posicion = Integer.parseInt(txtPos.getText());
         
-        lblAdverIn.setText(tipo);
-        lblLleno.setText(posicion.toString());
+        baseDatos agregar = new baseDatos();
+        agregar.ingresarAutos(tipo,posicion);
        
         
     }//GEN-LAST:event_jButton1ActionPerformed
