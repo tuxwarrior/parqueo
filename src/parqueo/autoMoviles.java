@@ -5,6 +5,10 @@
  */
 package parqueo;
 
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author ulises
@@ -16,6 +20,30 @@ public class autoMoviles extends javax.swing.JInternalFrame {
      */
     public autoMoviles() {
         initComponents();
+        ResultSet resultado=null;
+        
+        baseDatos datab = new baseDatos();
+        resultado=datab.llenarTabla("Automovil");
+        String[] TableColumnsName = {"id","Tipo","Posición"};
+        
+        DefaultTableModel aModel = (DefaultTableModel) jTable1.getModel();
+        aModel.setColumnIdentifiers(TableColumnsName);
+        try{
+        ResultSetMetaData rsmd = resultado.getMetaData();
+        int colNo = rsmd.getColumnCount();
+        
+        while(resultado.next()){
+            Object[] objeto = new Object[colNo];
+            for(int i=0;i<colNo;i++){
+                objeto[i]=resultado.getObject(i+1);
+            }
+            aModel.addRow(objeto);
+        }
+        jTable1.setModel(aModel);
+        }catch(Exception e){
+        
+        }
+        
     }
 
     /**

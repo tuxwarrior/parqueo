@@ -24,7 +24,7 @@ public class baseDatos {
     public static   String driver = "com.mysql.jdbc.Driver";
     public static   String dbuser = "parqueo";
     public static   String dbpass = "r3p34r";
-    public static   Statement st;
+    
     
     
     public static void ingresarAutos(String tipo, int posicion){
@@ -34,6 +34,8 @@ public class baseDatos {
         */
         // Para capturar el id del vehiculo de la db
         int idVehiculo;
+        
+        Statement st;
         
         //query
         String consultasqlIn="INSERT INTO vehiculos(tipo,estado,posicion) VALUES('"+tipo+"',1,"+posicion+")";
@@ -51,9 +53,9 @@ public class baseDatos {
             st = (Statement) conn.createStatement();
             st.executeUpdate(consultasqlIn);
             st.close();
-            conn.close();  
+            conn.close();
             
-            
+           
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
         }
@@ -63,7 +65,32 @@ public class baseDatos {
         
     }
     
+    public static void agregarRegistro(String tipo, int posicion){
+        
     
+    
+    }
+    
+    
+    public static ResultSet llenarTabla(String tipo){
+        String querya="SELECT idVehiculo,tipo,posicion FROM vehiculos WHERE tipo='"+tipo+"' AND estado=1";
+        Statement st;
+        ResultSet result=null;
+    
+        try{
+            Class.forName(driver).newInstance();
+            conn = (Connection) DriverManager.getConnection(sqlurl+databas,dbuser,dbpass);
+            st = (Statement) conn.createStatement();
+            result = st.executeQuery(querya);
+            st.close();
+            conn.close();
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+        
+        return result;
+        
+    }
     
     
     

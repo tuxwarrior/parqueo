@@ -259,7 +259,8 @@ public class Mantenimiento extends javax.swing.JInternalFrame {
         
         baseDatos agregar = new baseDatos();
         agregar.ingresarAutos(tipo,posicion);
-       
+        agregar.agregarRegistro(tipo, posicion);
+     
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
